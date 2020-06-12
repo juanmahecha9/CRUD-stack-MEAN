@@ -1,0 +1,68 @@
+<h2>Registro de datos y productos</h2>
+
+<form #DataFormulario="ngForm" (ngSubmit)="formularioUp()">
+    <!-- #DataFormulario="ngForm" define que el formulario con su id es un formulario angular -->
+    <!-- (ngSubmit) ="FormularioUp() indica la accion a ejecutar cuando se envie el formulario -->
+    <label for="nombre">Nombre: </label>
+    <br>
+    <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto" required #nombre="ngModel"
+        [(ngModel)]="Producto.nombre">
+    <!--[(ngMOdel)]="Producto.nombre" producto es lo que se importa y se inserta el nombre SIGNIFICA que el valor ingresado sera guardado en el modelo en el campo nombre
+    #nombre="ngModel" SIGNIFICA QUE LE INPUT es un input de angular para tener acceso alos datos  -->
+    <br>
+    <label for="nombre">Marca: </label>
+    <br>
+    <input type="text" id="marca" name="marca" placeholder="Ingrese la marca del producto" required #marca="ngModel"
+        [(ngModel)]="Producto.marca">
+    <!--[(ngMOdel)]="Producto.marca" producto es lo que se importa y se inserta el nombre SIGNIFICA que el valor ingresado sera guardado en el modelo en el campo nombre
+    #marca="ngModel" SIGNIFICA QUE LE INPUT es un input de angular para tener acceso alos datos  -->
+    <br>
+    <label for="nombre">Precio: </label>
+    <br>
+    <input type="number" id="precio" name="precio" placeholder="Ingrese el precio del producto" required
+        #precio="ngModel" [(ngModel)]="Producto.precio">
+    <!--[(ngMOdel)]="Producto.precio" producto es lo que se importa y se inserta el nombre SIGNIFICA que el valor ingresado sera guardado en el modelo en el campo nombre
+    #precio="ngModel" SIGNIFICA QUE LE INPUT es un input de angular para tener acceso alos datos  -->
+    <br>
+    <label for="nombre">Unidades: </label>
+    <br>
+    <input type="number" id="unidades" name="unidades" placeholder="Ingrese las unidades del producto" required
+        #unidades="ngModel" [(ngModel)]="Producto.unidades">
+    <!--[(ngMOdel)]="Producto.unidades" producto es lo que se importa y se inserta el nombre SIGNIFICA que el valor ingresado sera guardado en el modelo en el campo nombre
+    #unidades="ngModel" SIGNIFICA QUE LE INPUT es un input de angular para tener acceso alos datos  -->
+    <br>
+    <button type="submit" id="btn">Success...</button>
+</form>
+<br>
+<br>
+<button (click)="eliminarProductos1(dataEncontrada)">ELIMINAR TODO</button> 
+<hr>
+<br>
+
+<h3>Database</h3>
+<!-- Crear un blucle en el div  que recorre la DB-->
+<div *ngFor="let producto of productosEncontrados">
+    <!-- #actualizarProductos = "ngForm"  indicar que es un formulario de agular -->
+    <form #actualizarProductos="ngForm">
+        <label for="nombre">Nombre: </label> <br>
+        <input  type="text" id="nombre" required #nombre="ngModel" name=nombre [(ngModel)]=producto.nombre>
+        <br>
+        <!-- Crear el input done se inserta ls datos para actualizar -->
+        <label for="marca">Marca: </label> <br>
+        <input  type="text" id="marca" required #marca="ngModel" name=marca [(ngModel)]=producto.marca>
+        <br>
+        <label for="precio">Precio: </label> <br>
+        <input  type="number" id="precio" required #precio="ngModel" name=precio [(ngModel)]=producto.precio>
+        <br>
+        <label for="unidades">Unidades: </label> <br>
+        <input type="number" id="unidades" required #unidades="ngModel" name=unidades [(ngModel)]=producto.unidades>
+        <br>
+    </form>
+
+    <!-- Crear botones con las funciones  restantes-->
+    <button (click)="editar(producto)">EDITAR</button>
+    <br>
+    <button (click)="eliminarProductos(producto._id)">Eliminar</button> 
+    <br>
+    <br>
+</div>
